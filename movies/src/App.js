@@ -5,7 +5,6 @@ import axios from 'axios';
 
 //components
 import MovieList from './Components/MovieList'
-import Movie from './Components/Movie'
 import MovieForm from './Components/MovieForm'
 import UpdatedMovie from './Components/UpdateMovie'
 
@@ -16,18 +15,17 @@ function App() {
     .get('http://localhost:5000/api/movies')
     .then(res => setMovies(res.data))
     .catch(err => console.log(err))
-  })
+  }, [])
   return (
     <Router>
     <div className="App">
       <Switch>
   <Route path= "/movie-list" render={props => (<MovieList {...props} movies={movies}/>)}
   />
-      <Route exact path= "/update-movie/:id" 
-      render={props => (<Movie {...props} movies={movies} updateMovie={setMovies}/>)}
+      <Route exact path= "/add-movie" 
+      render={props => (<MovieForm {...props} movies={movies}/>)}
        />
-       <Route path="/movie-form" component={MovieForm}/>
-       <Route path="/edit-item/:id" render={props => (<UpdatedMovie {...props} movies={movies} updateMovie={setMovies} />)}
+       <Route path="/edit-movie/:id" render={props => (<UpdatedMovie {...props} movies={movies} setMovies={setMovies} />)}
        />
       </Switch>
     </div>
