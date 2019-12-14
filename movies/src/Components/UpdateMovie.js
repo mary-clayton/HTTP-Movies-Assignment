@@ -1,6 +1,25 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 
+const UpdateStyle = styled.div `
+form {
+    display: flex;
+flex-flow: column;
+width: 30%;
+margin-left: 35%;
+}
+input {
+    margin-top: 3%;
+    height: 20px;
+    font-size: .8rem;
+}
+button {
+    margin: 3% 30% 0 30%;
+    height: 30px;
+    font-size: .8rem;
+}
+`
 const initialMovie = {
     title: '',
     director: '',
@@ -42,7 +61,7 @@ const handleSubmit = e => {
 }
 
 return (
-    <div>
+    <UpdateStyle>
         <h2>Update Movie</h2>
         <form onSubmit={ e => handleSubmit(e, movie)}>
             <input type="text" name="title" placeholder="title.." value={movie.title} onChange={handleChanges}/>
@@ -51,7 +70,7 @@ return (
             <input type="text" name="stars" placeholder="stars.."  value={movie.stars} onChange={handleChanges}/>
             <button>Update Movie</button>
             </form>
-    </div>
+    </UpdateStyle>
 )
 }
 export default UpdateForm;

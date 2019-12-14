@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios'
+import styled from 'styled-components';
 
 
 const initialMovie = {
@@ -8,6 +9,27 @@ const initialMovie = {
     metascore: '',
     stars: ''
 }
+
+const AddStyle = styled.div `
+form {
+    display: flex;
+flex-flow: column;
+width: 30%;
+margin-left: 35%;
+}
+input {
+    margin-top: 3%;
+    height: 20px;
+    font-size: .8rem;
+}
+    
+}
+button {
+    margin: 3% 30% 0 30%;
+    height: 30px;
+    font-size: .8rem;
+}
+`
 
 const MovieForm = (props) => {
     const [movie, setMovie] = useState(initialMovie);
@@ -29,7 +51,7 @@ const MovieForm = (props) => {
         })
     }
     return (
-        <div>
+        <AddStyle>
             <h2>Add New Movie</h2>
             <form onSubmit={handleSubmit}>
             <input type="text" name="title" placeholder="title.." onChange={handleChanges} required/>
@@ -38,7 +60,7 @@ const MovieForm = (props) => {
             <input type="text" name="stars" placeholder="stars.." onChange={handleChanges} required/>
             <button>Add New Movie</button>
             </form>
-        </div>
+        </AddStyle>
     )
     }
 export default MovieForm;

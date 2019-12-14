@@ -1,5 +1,38 @@
 import React from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
+
+const ListStyle = styled.div ` 
+display: flex;
+flex-flow: wrap;
+.movie-card {
+    display:flex;
+    flex-flow: column;
+    width: 50%;
+    margin: 0%;
+    
+    button {
+        margin: 0% 30% 3% 30%;
+        height: 35px;
+    }
+}
+.buttons {
+  width: 50%;
+  button {
+      margin-top: 50%;
+      width: 80%;
+      background-color: white;
+      border: none;
+  }
+}
+.movies {
+    width: 100%;
+    margin-left: 0%;
+}
+.add {
+width: 10%;
+}
+`
 
 const MovieList = (props) => {
     const editMovie = (e, movie) => {
@@ -21,11 +54,13 @@ const MovieList = (props) => {
         .catch(err => err)
     }
     return (
-<div>
-{props.movies.map(movie => (
+<ListStyle>
+{props.movies.map(movie => 
+(
     <div
     className="movie-card"
     key={movie.id}> 
+    <img className="movies" src ="https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1250&q=80"/>
     <p>{movie.title}</p>
     <p>{movie.director}</p>
     <p>{movie.metascore}</p>
@@ -33,11 +68,12 @@ const MovieList = (props) => {
     <button onClick={e => editMovie(e,movie)}>Edit</button>
     <button onClick= {e => deleteMovie(e,movie)}>Delete</button>
     </div>
-))}
- <div className="buttons">
-<button onClick = {e => addMovie(e)}>Add</button>
+))
+}
+<div className="buttons">
+<button onClick = {e => addMovie(e)}><img className="add" src="https://img.icons8.com/android/24/000000/plus.png"/></button>
     </div>
-   </div> 
+    </ListStyle> 
    )
 }
 export default MovieList;

@@ -8,7 +8,7 @@ import MovieList from './Components/MovieList'
 import MovieForm from './Components/MovieForm'
 import UpdatedMovie from './Components/UpdateMovie'
 
-function App() {
+function App(props) {
   const [movies, setMovies] = useState([]);
   useEffect(()=> {
     axios
@@ -25,7 +25,7 @@ function App() {
       <Route exact path= "/add-movie" 
       render={props => (<MovieForm {...props} movies={movies}/>)}
        />
-       <Route path="/edit-movie/:id" render={props => (<UpdatedMovie {...props} movies={movies} setMovies={setMovies} />)}
+       <Route path="/edit-movie/:id" render={props => (<UpdatedMovie {...props} movies={movies} />)}
        />
       </Switch>
     </div>
